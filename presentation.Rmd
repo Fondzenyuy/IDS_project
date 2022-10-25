@@ -61,19 +61,56 @@ class: inverse, center, middle
 
 class: inverse, middle, center
 
-# Using xaringan
+# Methods                                                                                                                                                                                                               
 
 ---
 
-# xaringan
+# Method
 
-- The presentation is created using the `xaringan` package
+- Aim：To discuss is there any difference for us to rank asteroids from closest to furthest by using two properties(semi-major axis & orbital period).
 
-- Use `---` to separate slides and `--` for incremental builds
+- Premise：Both of these two properties are positively associated to the distance of that asteroid from Earth.
+--
+
+
+- Method 1: ( semi-major axis relative to Earth )
+
+(1) Order its data from smallest to largest -- "arrange()"
+< use "abs" inside：use absolute values because we're not talking about ”direction“，just "distance" >
+
+(2) Taking the first 100 observations -- "slice(1:100)"
+< we pick a part of the data as example >
 
 --
 
-- Like this
+- like this:
+asteriods_semimajoraxis <- asteroid %>%
+
+  arrange(abs(a)) %>%
+  
+  slice(1:100) #see top 100 to confirm that data displays in ascending order
+  
+---
+
+
+- Methods 2: (orbital period )
+
+(1) Order its data from smallest to largest -- "arrange()"
+
+(2) Taking the first 100 observations -- "slice(1:100)"
+
+
+
+< Data visualization: after making data frames, we can use ggplot to data more visual>
+
+--
+- Conclusion:
+
+Compare two data sets -- "comparedf(dataset1,dataset2)"
+
+If the results are the same, then there is no difference between the two methods; 
+
+If the results are different, we need to find the difference, or if there is a third variable that affects the result.
 
 ---
 

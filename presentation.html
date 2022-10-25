@@ -4,7 +4,7 @@
     <title>Ranking Asteroids from closest to furthest using orbital parameters</title>
     <meta charset="utf-8" />
     <meta name="author" content="Team name   Sitong Zhang, Tonylouis Fondzenyuy, Zhekai Chen" />
-    <meta name="date" content="2022-10-21" />
+    <meta name="date" content="2022-10-25" />
     <script src="libs/header-attrs-2.16/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -22,7 +22,7 @@ class: center, middle, inverse, title-slide
 ### University of Edinburgh
 ]
 .date[
-### 2022-10-21
+### 2022-10-25
 ]
 
 ---
@@ -58,19 +58,56 @@ class: inverse, center, middle
 
 class: inverse, middle, center
 
-# Using xaringan
+# Methods                                                                                                                                                                                                               
 
 ---
 
-# xaringan
+# Method
 
-- The presentation is created using the `xaringan` package
+- Aim：To discuss is there any difference for us to rank asteroids from closest to furthest by using two properties(semi-major axis &amp; orbital period).
 
-- Use `---` to separate slides and `--` for incremental builds
+- Premise：Both of these two properties are positively associated to the distance of that asteroid from Earth.
+--
+
+
+- Method 1: ( semi-major axis relative to Earth )
+
+(1) Order its data from smallest to largest -- "arrange()"
+&lt; use "abs" inside：use absolute values because we're not talking about ”direction“，just "distance" &gt;
+
+(2) Taking the first 100 observations -- "slice(1:100)"
+&lt; we pick a part of the data as example &gt;
 
 --
 
-- Like this
+- like this:
+asteriods_semimajoraxis &lt;- asteroid %&gt;%
+
+  arrange(abs(a)) %&gt;%
+  
+  slice(1:100) #see top 100 to confirm that data displays in ascending order
+  
+---
+
+
+- Methods 2: (orbital period )
+
+(1) Order its data from smallest to largest -- "arrange()"
+
+(2) Taking the first 100 observations -- "slice(1:100)"
+
+
+
+&lt; Data visualization: after making data frames, we can use ggplot to data more visual&gt;
+
+--
+- Conclusion:
+
+Compare two data sets -- "comparedf(dataset1,dataset2)"
+
+If the results are the same, then there is no difference between the two methods; 
+
+If the results are different, we need to find the difference, or if there is a third variable that affects the result.
 
 ---
 
