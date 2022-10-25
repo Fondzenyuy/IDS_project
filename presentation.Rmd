@@ -164,21 +164,19 @@ ggplot(data = iris_modified, mapping = aes(x = Sepal.Width, y = Sepal.Length, co
 
 ---
 
-## Plot and text
+#Conclusion
 
-.pull-left[
-- Some text
-- goes here
-]
-.pull-right[
-```{r warning=FALSE, out.width="100%", fig.width=4, echo=FALSE}
-# see how I changed out.width and fig.width from defaults
-# to make the figure bigger
-ggplot(penguins, aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot() +
-  theme_minimal()
+- At the end of this project, we would conclude on how many property-based rankings 
+agree when analysing asteroid data.
+- Furthermore, astronomers use the semi-major axis variable (asteroid-sun distance),a, as the
+most reliable property when computing distances between solar system bodies. Hence, 
+using the asteroid dataset, we can construct a 3D-map to show the distribution of 
+our ranked asteroids based on their distances to the sun.
+```{r NAME , echo = FALSE, , out.width = "50%"}
+#include_graphics("/Users/tonylouis/Desktop/Data Science #Intro/labs/IDS_project/flowchart.jpg")
 ```
-]
+
+
 
 ---
 
