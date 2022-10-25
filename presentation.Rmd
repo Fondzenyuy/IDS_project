@@ -50,12 +50,11 @@ class: inverse, center, middle
 # Section title
 
 ---
+# Source
+At first, our group found a database on the Internet in which we could find various data about the distance of asteroids relative to the Earth and other data
+In the database we can select data that we think are relevant to our report and also compare different asteroids to the same kind of data. This will make the differences more visible.
 
-# Hello World
-
-- Click the `Knit` button to compile your presentation
-
-- Make sure to commit and push all resulting files to your GitHub repo
+(insert Image)
 
 ---
 
