@@ -1,7 +1,7 @@
 ---
 title: "Ranking Asteroids from closest to furthest using orbital parameters"
 subtitle: ""
-author: "Team name <br> Sitong Zhang, Tonylouis Fondzenyuy, Zhekai Chen
+author: "Team Asteroids  <br> Sitong Zhang, Tonylouis Fondzenyuy, Zhekai Chen
 "
 institute: "University of Edinburgh"
 date: "`r Sys.Date()`"
@@ -34,39 +34,40 @@ knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618,
 asteroid <- read_csv("sbdb_query_results.csv")
 ```
 
-```{r include=FALSE}
+```{r background1 , include=FALSE}
 style_xaringan(
-  title_slide_background_image = "img/confetti.jpg"
+  title_slide_background_image = "bgslide1.png"
 )
 ```
 
-class: center, middle
-
-## A statement of the overall goal / research question
-
----
 
 class: inverse, center, middle
 
-# Section title
+# Introduction
 
+Asteroids, sometimes called minor planets, are rocky, airless remnants left over from the early formation of our solar system about 4.6 billion years ago.
+
+```{r asteroid , echo = FALSE, out.width = "55%"}
+include_graphics("one_asteroid.png")
+```
 ---
+class: inverse, center, middle
 # Source
 -At first, our group found a database on the Internet in which we could find various data about the distance of asteroids relative to the Earth and other data.
 - In the database we can select data that we think are relevant to our report and also compare different asteroids to the same kind of data variables. This will make the differences more visible.
 
-```{r datasource , echo = FALSE, out.width = "55%"}
-include_graphics("/Users/tonylouis/Desktop/Data Science Intro/labs/IDS_project/datanasa.jpg")
-
+```{r datanasa , echo = FALSE, out.width = "55%"}
+include_graphics("datanasa.jpg")
 ```
-
-
 ---
+
+
+
 # Data
 After filtering the relevant properties of the asteroid from the NASA database, we obtained the table below.
 
 ```{r datatable , echo = FALSE, out.width = "50%"}
-include_graphics("/Users/tonylouis/Desktop/Data Science Intro/labs/IDS_project/datatable.jpg")
+include_graphics("datatable.jpg")
 ```
 
 ---
@@ -76,80 +77,71 @@ include_graphics("/Users/tonylouis/Desktop/Data Science Intro/labs/IDS_project/d
 - Aim：To discuss is there any difference for us to rank asteroids from closest to furthest by using two properties(semi-major axis & orbital period).
 
 - Premise：Both of these two properties are positively associated to the distance of that asteroid from Earth.
---
 
+- Method 1: Using semi-major axis relative to Earth, `a`, variable
 
-- Method 1: ( semi-major axis relative to Earth )
-
-(1) Order its data from smallest to largest -- "arrange()"
+(1) Order its data from smallest to largest using `arrange()` 
 < use "abs" inside：use absolute values because we're not talking about ”direction“，just "distance" >
 
-(2) Taking the first 100 observations -- "slice(1:100)"
+(2) Taking the first 100 observations using `slice(1:100)`
 < we pick a part of the data as example >
 
 --
 
 - like this:
-asteriods_semimajoraxis <- asteroid %>%
+` asteriods_semimajoraxis <- asteroid %>% `
 
-  arrange(abs(a)) %>%
+  `arrange(abs(a)) %>%`
   
-  slice(1:100) #see top 100 to confirm that data displays in ascending order
+  `slice(1:100)` #see top 100 to confirm that data displays in ascending order
   
 ---
 
 
-- Methods 2: (orbital period )
+- Methods 2: Using Orbital period, `per_y`, variable
 
-(1) Order its data from smallest to largest -- "arrange()"
+(1) Order its data from smallest to largest using `arrange()` function
 
-(2) Taking the first 100 observations -- "slice(1:100)"
+(2) Taking the first 100 observations using `slice(1:100)`
 
 
 
 < Data visualization: after making data frames, we can use ggplot to data more visual>
 
 --
-- Conclusion:
 
-Compare two data sets -- "comparedf(dataset1,dataset2)"
+
+- We can then compare two data sets using `comparedf(dataset1,dataset2)`
 
 If the results are the same, then there is no difference between the two methods; 
 
 If the results are different, we need to find the difference, or if there is a third variable that affects the result.
 
----
 
 
 
 ---
 
-# Code
-
-```{r boring-analysis}
-# a boring analysis
-ave <- mean(cars$dist)
-print(ave)
-```
-
----
 
 # Plots
 
 ```{r recode-species, echo = FALSE}
 # In this chunk I'm doing a bunch of analysis that I don't want to present 
 # in my slides. But I need the resulting data frame for a plot I want to present.
-iris_modified <- iris %>%
-  mutate(Species = fct_other(Species, keep = "setosa"))
+asteriods_semimajoraxis <- asteroid %>%
+   arrange(abs(a)) %>%
+  slice(1:100)
+
 ```
 
 ```{r plot-iris, echo = FALSE}
 # Code hidden with echo = FALSE
 # Uses modified iris dataset from previous chunk
 # Play around with height and width until you're happy with the look
-ggplot(data = iris_modified, mapping = aes(x = Sepal.Width, y = Sepal.Length, color = Species)) +
-  geom_point() + 
-  theme_minimal() # theme options: https://ggplot2.tidyverse.org/reference/ggtheme.html
+asteriods_semimajoraxis %>%
+  ggplot(aes(x = first_obs, y = a), ) +
+  geom_hex() +
+  labs(title = "Asteroids against time of observation")
 ```
 
 ---
@@ -159,60 +151,17 @@ ggplot(data = iris_modified, mapping = aes(x = Sepal.Width, y = Sepal.Length, co
 - At the end of this project, we would conclude on how many property-based rankings 
 agree when analysing asteroid data.
 - Furthermore, astronomers use the semi-major axis variable (asteroid-sun distance),a, as the
-most reliable property when computing distances between solar system bodies. Hence, 
-using the asteroid dataset, we can construct a 3D-map to show the distribution of 
-our ranked asteroids based on their distances to the sun.
+most reliable property when computing distances between solar system bodies. 
+- Hence, using the asteroid dataset, we can construct a 3D distribution map..
 
 ```{r flowchart , echo = FALSE, , out.width = "55%"}
-include_graphics("/Users/tonylouis/Desktop/Data Science Intro/labs/IDS_project/mindmap.jpg")
+include_graphics("mindmap.jpg")
 ```
 
 
 
----
 
 
-# Images
 
-```{r castle, echo = FALSE, out.width = "60%", fig.align = "center", fig.cap = "Image credit: Photo by Jörg Angeli on Unsplash."}
-include_graphics("https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80")
-```
 
-Or you can also include a full page image. See next slide.
 
----
-
-background-image: url(https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)
-
----
-
-# Math Expressions
-
-You can write LaTeX math expressions inside a pair of dollar signs, e.g. &#36;\alpha+\beta$ renders $\alpha+\beta$. You can use the display style with double dollar signs:
-
-```
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-```
-
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-
-Limitations:
-
-1. The source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting `$$` must appear in the very beginning of a line, followed immediately by a non-space character, and the ending `$$` must be at the end of a line, led by a non-space character;
-
-1. There should not be spaces after the opening `$` or before the closing `$`.
-
-1. Math does not work on the title slide (see [#61](https://github.com/yihui/xaringan/issues/61) for a workaround).
-
----
-
-# Feeling adventurous?
-
-- Want to find out more about `xaringan`? See https://slides.yihui.name/xaringan/#1.
-
-- You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
-
-- But some of you might want to play around with slide styling. The 
-`xaringanthemer` provides some solutions for this that: https://pkg.garrickadenbuie.com/xaringanthemer.
-
-- And if you want more bells and whistles, there is also `xaringanExtra`: https://pkg.garrickadenbuie.com/xaringanExtra.

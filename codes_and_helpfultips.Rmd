@@ -20,3 +20,7 @@ If you want to generate a table, make sure it is in the HTML format (instead of 
 ```{r iris-table, echo = FALSE}
 kable(head(DATASET), format = "html")
 ```
+
+# Math Expressions
+
+You can write LaTeX math expressions inside a pair of dollar signs, e.g. &#36;\alpha+\beta$ renders $\alpha+\beta$. You can use the display style with double dollar signs.
