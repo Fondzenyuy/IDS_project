@@ -1,0 +1,22 @@
+
+
+#Task 1 Code
+
+Ranking asteroids based on semi-major axis 
+
+```{r task1}
+asteriods_semimajoraxis <- asteroid %>%
+  arrange(abs(a)) %>%
+  slice(1:100) #see top 100 to confirm that data displays in ascending order
+
+```
+
+
+#Tricks for formatting presentation file
+# Tables
+
+If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
+
+```{r iris-table, echo = FALSE}
+kable(head(DATASET), format = "html")
+```

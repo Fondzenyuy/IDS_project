@@ -31,6 +31,7 @@ knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618,
 
 ```{r load-data, include=FALSE}
 # Load your data here
+asteroid <- read_csv("sbdb_query_results.csv")
 ```
 
 ```{r include=FALSE}
@@ -51,22 +52,25 @@ class: inverse, center, middle
 
 ---
 # Source
-At first, our group found a database on the Internet in which we could find various data about the distance of asteroids relative to the Earth and other data
-In the database we can select data that we think are relevant to our report and also compare different asteroids to the same kind of data. This will make the differences more visible.
+-At first, our group found a database on the Internet in which we could find various data about the distance of asteroids relative to the Earth and other data.
+- In the database we can select data that we think are relevant to our report and also compare different asteroids to the same kind of data variables. This will make the differences more visible.
 
-```{r datasource , echo = FALSE, , out.width = "50%"}
+```{r datasource , echo = FALSE, out.width = "55%"}
 include_graphics("/Users/tonylouis/Desktop/Data Science Intro/labs/IDS_project/datanasa.jpg")
+
 ```
 
 
 ---
+# Data
+After filtering the relevant properties of the asteroid from the NASA database, we obtained the table below.
 
-class: inverse, middle, center
-
-# Methods                                                                                                                                                                                                               
+```{r datatable , echo = FALSE, out.width = "50%"}
+include_graphics("/Users/tonylouis/Desktop/Data Science Intro/labs/IDS_project/datatable.jpg")
+```
 
 ---
-
+                                                                                                                          
 # Method
 
 - Aim：To discuss is there any difference for us to rank asteroids from closest to furthest by using two properties(semi-major axis & orbital period).
@@ -116,23 +120,7 @@ If the results are different, we need to find the difference, or if there is a t
 
 ---
 
-# Layouts
 
-You can use plain text
-
-- or bullet points
-
-.pull-left[
-or text in two columns $^*$
-]
-.pull-right[
-- like
-- this
-]
-
-.footnote[
-[*] And add footnotes
-]
 
 ---
 
@@ -183,15 +171,6 @@ include_graphics("/Users/tonylouis/Desktop/Data Science Intro/labs/IDS_project/m
 
 ---
 
-# Tables
-
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
-
-```{r iris-table, echo = FALSE}
-kable(head(iris), format = "html")
-```
-
----
 
 # Images
 
