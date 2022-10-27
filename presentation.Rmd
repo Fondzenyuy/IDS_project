@@ -146,6 +146,12 @@ asteriods_semimajoraxis %>%
 
 ---
 
+```{r mainbelt , echo = FALSE, out.width = "70%"}
+include_graphics("solarsystem.jpg")
+```
+
+---
+
 #Conclusion
 
 - At the end of this project, we would conclude on how many property-based rankings 
