@@ -39,9 +39,19 @@ rankby_per
 
 ```{r }
 #preparing dataset for model and fitting step
+asteroid <- asteroid %>%
+  select(e,a)
 
+asteroid
 ```
 
+```{r}
+#next steps: define work flow, model, plot linear model - done
+
+#add new predictors
+ #asteroid <- asteroid %>%
+  #select(e,a....)
+```
 
 
 
