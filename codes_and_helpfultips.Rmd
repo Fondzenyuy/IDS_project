@@ -1,15 +1,53 @@
 
 
 #Task 1 Code
+```{r packages}
+# Add any additional packages you need to this chunk
+library(tidyverse)
+```
+
+#Loadind data set
+```{r dataset}
+# Loading data here
+asteroid <- read_csv("sbdb_query_results.csv")
+asteroid
+```
 
 Ranking asteroids based on semi-major axis 
 
 ```{r task1}
-asteriods_semimajoraxis <- asteroid %>%
-  arrange(abs(a)) %>%
-  slice(1:100) #see top 100 to confirm that data displays in ascending order
+rankby_a <- asteroid %>%
+  arrange(abs(a)) %>% #a : semi-major axis distance
+  slice(1:30) #see top 100 to confirm that data displays in ascending order
+
+rankby_a
+```
+
+
+```{r task2}
+rankby_per <- asteroid %>%
+  arrange(abs(per_y)) %>% #a : semi-major axis distance
+  slice(1:30) #see top 100 to confirm that data displays in ascending order
+
+rankby_per
+```
+### Discussion
+- By observation of the top 30 rankings, there is a close correlation between semi-major axis and orbital periods. This means that further asteroids from us tend to have higher orbital periods (take longer to orbit the sun) which is logical.
+- We can go ahead and model the correlation between semi-major axis and the orbital period.
+(a ~ per_y)
+- ** we can later add more parameters (as predictor variables) and see if the model becomes more accurate for predicting a.
+
+```{r }
+#preparing dataset for model and fitting step
 
 ```
+
+
+
+
+
+
+
 
 
 #Tricks for formatting presentation file
