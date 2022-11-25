@@ -4,7 +4,7 @@
     <title>Ranking Asteroids from closest to furthest using orbital parameters</title>
     <meta charset="utf-8" />
     <meta name="author" content="Team Asteroids   Sitong Zhang, Tonylouis Fondzenyuy, Zhekai Chen" />
-    <meta name="date" content="2022-10-28" />
+    <meta name="date" content="2022-11-25" />
     <script src="libs/header-attrs-2.16/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -22,7 +22,7 @@ class: center, middle, inverse, title-slide
 ### University of Edinburgh
 ]
 .date[
-### 2022-10-28
+### 2022-11-25
 ]
 
 ---
@@ -37,7 +37,7 @@ class: center, middle, inverse, title-slide
 
 
 
-class: inverse,centre,middle
+class: inverse, center, middle
 
 # Introduction
 
@@ -45,7 +45,7 @@ Asteroids, sometimes called minor planets, are rocky, airless remnants left over
 
 &lt;img src="one_asteroid.png" width="55%" /&gt;
 ---
-class: inverse,centre,middle
+class: inverse, center, middle
 # Source
 -At first, our group found a database on the Internet in which we could find various data about the distance of asteroids relative to the Earth and other data.
 - In the database we can select data that we think are relevant to our report and also compare different asteroids to the same kind of data variables. This will make the differences more visible.
@@ -73,13 +73,13 @@ After filtering the relevant properties of the asteroid from the NASA database, 
 (1) Order its data from smallest to largest using `arrange()` 
 &lt; use "abs" inside：use absolute values because we're not talking about ”direction“，just "distance" &gt;
 
-(2) Taking the first 100 observations using `slice(1:100)`
+(2) Taking the 100 observations as a sample using `slice()`
 &lt; we pick a part of the data as example &gt;
 
 --
 
 - like this:
-` asteriods_semimajoraxis &lt;- asteroid %&gt;% `
+` sample_1_a &lt;- asteroid %&gt;% `
 
   `arrange(abs(a)) %&gt;%`
   
@@ -101,7 +101,9 @@ After filtering the relevant properties of the asteroid from the NASA database, 
 --
 
 
-- We can then compare two data sets using `comparedf(dataset1,dataset2)`
+- We pick up 3 samples from the data and each sample including two data sets with y-axis being a or per_y.
+
+We can then compare each two data sets using `comparedf(dataset1,dataset2)`
 
 If the results are the same, then there is no difference between the two methods; 
 
@@ -113,15 +115,103 @@ If the results are different, we need to find the difference, or if there is a t
 ---
 
 
-# Plots
+# Plot 1
 
 
+```
+## Warning: Removed 3 rows containing non-finite values (stat_bin).
+```
 
-&lt;img src="presentation_files/figure-html/plot-iris-1.png" width="80%" /&gt;
+```
+## Warning: Removed 2 rows containing missing values (geom_bar).
+```
+
+&lt;img src="presentation_files/figure-html/histogram1-1.png" width="80%" /&gt;
 
 ---
 
-&lt;img src="solarsystem.jpg" width="70%" /&gt;
+
+
+
+---
+# Plot 2
+
+
+```
+## Warning: Removed 9664 rows containing non-finite values (stat_bin).
+```
+
+```
+## Warning: Removed 2 rows containing missing values (geom_bar).
+```
+
+&lt;img src="presentation_files/figure-html/recode-species-1.png" width="80%" /&gt;
+
+---
+
+---
+# Plot 3
+
+```
+## 
+## Call:
+## lm(formula = a ~ per_y, data = asteroid)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.61216 -0.00423  0.00258  0.00928  0.01328 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 8.970e-01  8.188e-05   10955   &lt;2e-16 ***
+## per_y       4.040e-01  1.816e-05   22249   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.01557 on 1038574 degrees of freedom
+##   (3 observations deleted due to missingness)
+## Multiple R-squared:  0.9979,	Adjusted R-squared:  0.9979 
+## F-statistic: 4.95e+08 on 1 and 1038574 DF,  p-value: &lt; 2.2e-16
+```
+
+
+-----
+
+```r
+model2 &lt;- lm(a~per_y+i+e, data = asteroid)
+summary(model2)
+```
+
+```
+## 
+## Call:
+## lm(formula = a ~ per_y + i + e, data = asteroid)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.61904 -0.00474  0.00234  0.00887  0.03439 
+## 
+## Coefficients:
+##               Estimate Std. Error  t value Pr(&gt;|t|)    
+## (Intercept)  8.965e-01  8.742e-05 10255.18   &lt;2e-16 ***
+## per_y        4.046e-01  1.819e-05 22239.43   &lt;2e-16 ***
+## i           -4.513e-04  2.550e-06  -176.96   &lt;2e-16 ***
+## e            1.170e-02  2.091e-04    55.97   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.01533 on 1038572 degrees of freedom
+##   (3 observations deleted due to missingness)
+## Multiple R-squared:  0.998,	Adjusted R-squared:  0.998 
+## F-statistic: 1.703e+08 on 3 and 1038572 DF,  p-value: &lt; 2.2e-16
+```
+
+```r
+a_pery_fit &lt;- linear_reg() %&gt;%
+  set_engine("lm") %&gt;%
+  fit(a~per_y+i+e, data = asteroid) %&gt;%
+  tidy()
+```
 
 ---
 

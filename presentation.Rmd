@@ -22,6 +22,7 @@ library(tidyverse)
 library(palmerpenguins)
 library(knitr)
 library(xaringanthemer)
+library(tidymodels)
 ```
 
 ```{r setup, include=FALSE}
@@ -41,7 +42,7 @@ style_xaringan(
 ```
 
 
-class: inverse,centre,middle
+class: inverse, center, middle
 
 # Introduction
 
@@ -51,7 +52,7 @@ Asteroids, sometimes called minor planets, are rocky, airless remnants left over
 include_graphics("one_asteroid.png")
 ```
 ---
-class: inverse,centre,middle
+class: inverse, center, middle
 # Source
 -At first, our group found a database on the Internet in which we could find various data about the distance of asteroids relative to the Earth and other data.
 - In the database we can select data that we think are relevant to our report and also compare different asteroids to the same kind of data variables. This will make the differences more visible.
@@ -83,13 +84,13 @@ include_graphics("datatable.jpg")
 (1) Order its data from smallest to largest using `arrange()` 
 < use "abs" inside：use absolute values because we're not talking about ”direction“，just "distance" >
 
-(2) Taking the first 100 observations using `slice(1:100)`
+(2) Taking the 100 observations as a sample using `slice()`
 < we pick a part of the data as example >
 
 --
 
 - like this:
-` asteriods_semimajoraxis <- asteroid %>% `
+` sample_1_a <- asteroid %>% `
 
   `arrange(abs(a)) %>%`
   
@@ -111,7 +112,9 @@ include_graphics("datatable.jpg")
 --
 
 
-- We can then compare two data sets using `comparedf(dataset1,dataset2)`
+- We pick up 3 samples from the data and each sample including two data sets with y-axis being a or per_y.
+
+We can then compare each two data sets using `comparedf(dataset1,dataset2)`
 
 If the results are the same, then there is no difference between the two methods; 
 
@@ -123,31 +126,64 @@ If the results are different, we need to find the difference, or if there is a t
 ---
 
 
-# Plots
+# Plot 1
 
-```{r recode-species, echo = FALSE}
+```{r histogram1, echo = FALSE}
 # In this chunk I'm doing a bunch of analysis that I don't want to present 
 # in my slides. But I need the resulting data frame for a plot I want to present.
-asteriods_semimajoraxis <- asteroid %>%
-   arrange(abs(a)) %>%
-  slice(1:100)
+asteroid %>%
+  ggplot(aes(x = a)) +
+  geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +
+  labs(x = "semi-major axis (a) in AD")
 
-```
 
-```{r plot-iris, echo = FALSE}
-# Code hidden with echo = FALSE
-# Uses modified iris dataset from previous chunk
-# Play around with height and width until you're happy with the look
-asteriods_semimajoraxis %>%
-  ggplot(aes(x = first_obs, y = a), ) +
-  geom_hex() +
-  labs(title = "Asteroids against time of observation")
 ```
 
 ---
 
-```{r mainbelt , echo = FALSE, out.width = "70%"}
-include_graphics("solarsystem.jpg")
+
+
+
+---
+# Plot 2
+
+```{r recode-species, echo = FALSE}
+# In this chunk I'm doing a bunch of analysis that I don't want to present 
+# in my slides. But I need the resulting data frame for a plot I want to present.
+#asteroid_orbital_period <- 
+asteroid %>%
+  ggplot(aes(x = asteroid$per_y)) +
+  geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +
+  labs(x = "orbital period (per_y)")
+```
+
+---
+
+---
+# Plot 3
+```{r linearmodel, echo = FALSE}
+model1 <- lm(a~per_y, data = asteroid)
+summary(model1)
+
+a_pery_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(a~per_y, data = asteroid) %>%
+  tidy()
+
+
+```
+
+
+-----
+```{r}
+model2 <- lm(a~per_y+i+e, data = asteroid)
+summary(model2)
+
+a_pery_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(a~per_y+i+e, data = asteroid) %>%
+  tidy()
+
 ```
 
 ---
