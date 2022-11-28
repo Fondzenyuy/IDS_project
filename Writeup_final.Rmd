@@ -1,0 +1,31 @@
+---
+title: "Classifying Asteroids from closest to furthest using orbital parameters"
+#subtitle: ""
+author: Sitong Zhang, Tonylouis Fondzenyuy, Zhekai Chen
+institute: "University of Edinburgh"
+date: "`r Sys.Date()`"
+---
+## Discussion of Results & Conclusion
+### Discussion of Results
+
+The histograms above show the distribution of the asteroids using the semi-major axis and orbital periods. These histograms also contain information on the closeness (classification by distance) of these asteroids to us since the orbital parameters used are distance-dependent.
+As seen on the plots, both classifications show an identical pattern across the entire asteroid data set. This can be explained mathematically by the equation below whereby:
+
+The equation shows a direct linear relationship between the semi-major axis and the orbital period thereby explaining the identical pattern in the histograms above. 
+
+The histogram consists of spacings between the histogram bins of the asteroid positions. These spacings physically represent the Kirkwood gaps in our solar system. As the name implies, Kirkwood gaps refer to the gaps or dips in the distribution of the semi-major axes (or equivalently of the orbital periods) of the orbits of asteroids. Due to the relatively small mass of the asteroids when compared to the planets in our solar system, the asteroids tend to be affected by the resonances (gravitational effects) of Jupiter and the other icy giants namely (in descending order of proximity to the earth): Saturn, Uranus, Neptune and Pluto. The gravitational resonances of the listed planets clears a region around themselves which cannot be occupied by asteroids. As a result, the first dip on the plotted histograms (from the left) coincides with the region between Mars and Jupiter . This first gap is commonly referred to as the asteroid belt. The next 4 dips represent the regions cleared by the gravitational effects of the icy giants in descending order from the sun as earlier mentioned.
+
+As shown on both histograms, the earliest asteroids can be found around 2AU (2 Astronomical units) whereby 1AU denotes the distance between the earth and the sun. Hence, the closest asteroids to us in the solar system can be found at a distance which is at least twice the sun-earth distance. 
+Models
+We can model the relationship between the semi-major axes and orbital periods across our classification data set. The values of these parameters are numeric thereby permitting the use of a linear regression model. As described in the methods section, the `tidymodels` package was used to compute the regression model. 
+
+The model output was then visualized as shown below:
+(model image)
+
+The goodness of fit of our model (denoted as R-squared in the method) gave us a value of 0.9979. Since the R-squared value is very close to 1, it confirms the direct correlation between orbital semi-major axis and period as equivalent parameters for classifying asteroids. Interestingly, when two other distant-dependent orbital parameters, orbital inclination and ellipse-- , are added as predictors to the model, the value of R-squared moves slightly closer to 1. Hence, additional parameters can play a role in helping us get a slightly accurate classification of the asteroids. However, these additional parameters by themselves cannot be primarily used as the only predictors since they give very small contributions to the overall R-squared value.
+
+### Conclusion
+To conclude, semi-major axis and orbital periods give the same classification of asteroids in our data set. This 
+
+---
+
