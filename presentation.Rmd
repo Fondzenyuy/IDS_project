@@ -134,7 +134,7 @@ If the results are different, we need to find the difference, or if there is a t
 asteroid %>%
   ggplot(aes(x = a)) +
   geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +
-  labs(x = "semi-major axis (a) in AD")
+  labs(x = "semi-major axis (a) in AU")
 
 
 ```
