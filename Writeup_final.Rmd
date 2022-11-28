@@ -5,6 +5,28 @@ author: Sitong Zhang, Tonylouis Fondzenyuy, Zhekai Chen
 institute: "University of Edinburgh"
 date: "`r Sys.Date()`"
 ---
+## Method
+For exploring whether the semi-long axis and orbital period have the same effect on the ordering of asteroid distances, we have two ways to approach the problem.
+
+ 
+
+In method one, we use a ggplot plot to make the data more visual, allowing us to look at it more intuitively. We create two plots based on different variables in the table: Making a histogram with the x-axis as 'a' (semi-long axis) and the y-axis as the number of asteroids that occupy a certain semi-long interval. Similarly, we make another histogram with the x-axis as 'per_y' (orbital period) and the y-axis as the number of asteroids occupied in each orbital period interval. 
+
+ 
+
+We do this because if the semi-long axis and the orbital period have the same effect on the asteroid ordering, their visualizations show a similar trend (since each intervals corresponding to the two visualizations will have almost the same number of asteroids); if the effects are different, it means that the two variables do not have the same effect on the asteroid ordering.
+
+ 
+
+In method two, we will explore whether there is a linear relationship between the variable a and the variable per_y. So, we will create a linear model between 'a' and 'per_y' (set_engine("lm")), and in this model, “a” is the response variable, “per_y” is the explanatory variable. Then we check the tidy for this model, in which we find the R squared. 
+
+ 
+
+The reason we create a linear model is that if there is a linear relationship between the variable 'a' and the variable 'per_y', then we can know that there is a linear relationship between 'a' and 'per_y', so if 'a' has any effect on the other variables then 'per_y' has the same effect on them.
+
+
+
+
 ## Discussion of Results & Conclusion
 ### Discussion of Results
 
