@@ -5,12 +5,21 @@ author: Sitong Zhang, Tonylouis Fondzenyuy, Zhekai Chen
 institute: "University of Edinburgh"
 date: "`r Sys.Date()`"
 ---
+## Introduction
+
+In this time data science project, the issue we are discussing is the distance between asteroids and the Earth. We want to do the calculation in two different ways. The first main variable is use the Semi major axis, and for the second main variable is the orbital period. These are the two main variables we choose. So we do some research of the data of it.
+One of our team members study the physics, and he find there is a website which might give us the data we want to have. The website is created by the NASA company which a really famous company at the Aviation sector.
+Just like the pictures shown in the presentation, in the website it has fore parts. We need to choose different categories in these four parts which can make us get the more accurate data as we want. For the first part which is limit by object kind, we need to choose the comet which is according to our questions. After that we need to choose the asteroid orbit classes. And choose the asteroid we want to get.
+For the fourth part which is most important ,we need to help the different asteroid to choose the variables we want to get. in the beginning, we choose thirteen different variables. They are neo,diameter e ,a ,q, I ,om ,w, pery ,moid,sigamw, first obs and last obs.
+These different variables have different meaning . for the neo it is near earth object flag. That is the object which the orbit of it is really near to the earth. And for the distance between object orbit and earth orbit need smaller than 1.3 astronomical units. And for the neo if it has similar size with earth which will make dangerous with earth is pho. E is the eccentricity . which is the orbital eccentricity of the subject. If we take the orbit of the Earth as our example. The data shows on e mean the Deviation of the asteroid's orbit from that of the Earth. For the a is the semi major axis . As we know the orbit is usually a oval . There is a line which cross the center and touch two sides of the oval. The q is perihelion distance, that is the closest possible distance between earth and asteroid. I is the inclination. om is the longitude of the ascending node, the Angular pitch between the asteroid at the Ascending node and the asteroid at the point when the ecliptic plane and equatorial plane meet. W is the argument of perihelion which is the argument in the orbit from the ascending node to perihelion. Pery is the time period per years we think year is a suitable time unit. Moid is the smallest distance between two orbits it is different with q which is the smallest distance between two objects.
+ 
+
 ## Method
 For exploring whether the semi-long axis and orbital period have the same effect on the ordering of asteroid distances, we have two ways to approach the problem.
 
  
 
-In method one, we use a ggplot plot to make the data more visual, allowing us to look at it more intuitively. We create two plots based on different variables in the table: Making a histogram with the x-axis as 'a' (semi-long axis) and the y-axis as the number of asteroids that occupy a certain semi-long interval. Similarly, we make another histogram with the x-axis as 'per_y' (orbital period) and the y-axis as the number of asteroids occupied in each orbital period interval. 
+In method one, we use a ggplot plot to make the data more visual, allowing us to look at it more intuitively. We create two plots based on different variables in the table: Making a histogram with the x-axis as `a` (semi-long axis) and the y-axis as the number of asteroids that occupy a certain semi-long interval. Similarly, we make another histogram with the x-axis as `per_y` (orbital period) and the y-axis as the number of asteroids occupied in each orbital period interval. 
 
  
 
@@ -18,11 +27,11 @@ We do this because if the semi-long axis and the orbital period have the same ef
 
  
 
-In method two, we will explore whether there is a linear relationship between the variable a and the variable per_y. So, we will create a linear model between 'a' and 'per_y' (set_engine("lm")), and in this model, “a” is the response variable, “per_y” is the explanatory variable. Then we check the tidy for this model, in which we find the R squared. 
+In method two, we will explore whether there is a linear relationship between the variable a and the variable `per_y`. So, we will create a linear model between `a` and `per_y` (set_engine("lm")), and in this model, `a` is the response variable, `per_y` is the explanatory variable. Then we apply the `tidy` function for this model, in which we find the R-squared value. 
 
  
 
-The reason we create a linear model is that if there is a linear relationship between the variable 'a' and the variable 'per_y', then we can know that there is a linear relationship between 'a' and 'per_y', so if 'a' has any effect on the other variables then 'per_y' has the same effect on them.
+The reason we create a linear model is that if there is a linear relationship between the variable `a` and the variable `per_y`, then we can know that there is a linear relationship between `a` and `per_y`, so if `a` has any effect on the other variables then `per_y` has the same effect on them.
 
 
 
@@ -47,7 +56,7 @@ The model output was then visualized as shown below:
 The goodness of fit of our model (denoted as R-squared in the method) gave us a value of 0.9979. Since the R-squared value is very close to 1, it confirms the direct correlation between orbital semi-major axis and period as equivalent parameters for classifying asteroids. Interestingly, when two other distant-dependent orbital parameters, orbital inclination and ellipse-- , are added as predictors to the model, the value of R-squared moves slightly closer to 1. Hence, additional parameters can play a role in helping us get a slightly accurate classification of the asteroids. However, these additional parameters by themselves cannot be primarily used as the only predictors since they give very small contributions to the overall R-squared value.
 
 ### Conclusion
-To conclude, semi-major axis and orbital periods give the same classification of asteroids in our data set. This 
+To conclude, semi-major axis and orbital periods give the same classification of asteroids in our data set. 
 
 ---
 
