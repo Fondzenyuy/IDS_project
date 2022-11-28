@@ -79,49 +79,35 @@ include_graphics("datatable.jpg")
 
 - Premise：Both of these two properties are positively associated to the distance of that asteroid from Earth.
 
-- Method 1: Using ggplot to create two histograms with x-axis is "a" (semi-major axis) and x-axis is "per_y" (orbital period) correspondingly.
+
+- Method 1: Using ggplot to create two histograms with x-axis is `a` (semi-major axis) and x-axis is `per_y` (orbital period) correspondingly.
 
 
 --
-
+---
 - The code for histogram 1 is like this:
+
  `asteroid %>%`
+ 
  `ggplot(aes(x = a)) +`
+ 
  `geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +`
+ 
  `labs(x = "semi-major axis (a) in AU")` 
+ 
  
  - The code for histogram 2 is like this:
  `asteroid %>%`
+ 
  `ggplot(aes(x = per_y)) +`
+ 
  `geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +`
+ 
  `labs(x = "orbital period (per_y)")` 
   
 ---
 
 
-- Methods 2: linear model
-
-Creating a linear model between `a` and 
-
-
-
-< Data visualization: after making data frames, we can use ggplot to data more visual>
-
---
-
-
-- We pick up 3 samples from the data and each sample including two data sets with y-axis being a or per_y.
-
-We can then compare each two data sets using `comparedf(dataset1,dataset2)`
-
-If the results are the same, then there is no difference between the two methods; 
-
-If the results are different, we need to find the difference, or if there is a third variable that affects the result.
-
-
-
-
----
 
 
 # Plot 1
@@ -136,9 +122,6 @@ asteroid %>%
 
 
 ```
-
----
-
 
 
 
@@ -157,32 +140,25 @@ asteroid %>%
 
 ---
 
----
-# Plot 3
-```{r linearmodel, echo = FALSE}
-model1 <- lm(a~per_y, data = asteroid)
-summary(model1)
+- Methods 2: linear model
 
-a_pery_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(a~per_y, data = asteroid) %>%
-  tidy()
+Creating a linear model between `a` and `per_y`
+
+If there is a linear model between the variable `a` and the variable `per_y` then there is a linear relationship between `a` and `per_y`. In this case, if `a` has any effect on the other variables then `per_y` has the same effect on them.
+
+--
+- The code for linear model  is like this:
+
+`model1 <- lm(a~per_y, data = asteroid)`
+`summary(model1)`
+
+`a_pery_fit <- linear_reg() %>%`
+  `set_engine("lm") %>%`
+  `fit(a~per_y, data = asteroid) %>%`
+  `tidy()`
+--
 
 
-```
-
-
------
-```{r}
-model2 <- lm(a~per_y+i+e, data = asteroid)
-summary(model2)
-
-a_pery_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(a~per_y+i+e, data = asteroid) %>%
-  tidy()
-
-```
 
 ---
 
