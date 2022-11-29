@@ -74,7 +74,18 @@ include_graphics("datatable.jpg")
 ```
 
 ---
-                                                                                                                          
+#Map of all Asteroids before analysis
+
+```{r allmap,echo = FALSE,warning=FALSE,fig.width = 2.6}
+ggplot(data = asteroid) + stat_bin_2d(mapping = aes(x = a, y = i), bins = 150) + 
+  xlim(c(1.5,3.5)) + ylim(c(0,30)) + labs (x = "semi-major axis/AU", y = "inclination (i)") +
+  scale_fill_viridis_c(option = "plasma") + theme(line = element_blank(),
+        panel.background = element_rect(fill = "darkblue"))
+```
+
+
+
+---                                                                                                                          
 # Method
 
 - Aim：To discuss is there any difference for us to rank asteroids from closest to furthest by using two properties(semi-major axis & orbital period).
