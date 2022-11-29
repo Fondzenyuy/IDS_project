@@ -425,13 +425,14 @@ visualizations will have almost the same number of asteroids); if the
 effects are different, it means that the two variables do not have the
 same effect on the asteroid ordering.</p>
 <p>Here is the code for these histograms:</p>
-<p><code>asteroid %&gt;%</code> <code>ggplot(aes(x = a)) +</code>
-<code>geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +</code>
-<code>labs(x = &quot;semi-major axis (a) in AU&quot;)</code></p>
-<p><code>asteroid %&gt;%</code>
-<code>ggplot(aes(x = asteroid$per_y)) +</code>
-<code>geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +</code>
-<code>labs(x = &quot;orbital period (per_y)&quot;)</code></p>
+<p><code>asteroid %&gt;%</code></p>
+<p><code>ggplot(aes(x = a)) +</code>
+<code>geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +</code></p>
+<p><code>labs(x = &quot;semi-major axis (a) in AU&quot;)</code></p>
+<p><code>asteroid %&gt;%</code></p>
+<p><code>ggplot(aes(x = asteroid$per_y)) +</code></p>
+<p><code>geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +</code></p>
+<p><code>labs(x = &quot;orbital period (per_y)&quot;)</code></p>
 <p>In method two, we will explore whether there is a linear relationship
 between the variable a and the variable <code>per_y</code>. So, we will
 create a linear model between <code>a</code> and <code>per_y</code>
@@ -446,12 +447,12 @@ between <code>a</code> and <code>per_y</code>, so if <code>a</code> has
 any effect on the other variables then <code>per_y</code> has the same
 effect on them.</p>
 <p>Here is the code for the linear model:</p>
-<p><code>model1 &lt;- lm(a~per_y, data = asteroid)</code>
-<code>summary(model1)</code></p>
-<p><code>a_pery_fit &lt;- linear_reg() %&gt;%</code>
-<code>set_engine(&quot;lm&quot;) %&gt;%</code>
-<code>fit(a~per_y, data = asteroid) %&gt;%</code>
-<code>tidy()</code></p>
+<p><code>model1 &lt;- lm(a~per_y, data = asteroid)</code></p>
+<p><code>summary(model1)</code></p>
+<p><code>a_pery_fit &lt;- linear_reg() %&gt;%</code></p>
+<p><code>set_engine(&quot;lm&quot;) %&gt;%</code></p>
+<p><code>fit(a~per_y, data = asteroid) %&gt;%</code></p>
+<p><code>tidy()</code></p>
 </div>
 <div id="discussion-of-results-conclusion" class="section level2">
 <h2>Discussion of Results &amp; Conclusion</h2>

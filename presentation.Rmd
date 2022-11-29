@@ -112,7 +112,7 @@ include_graphics("datatable.jpg")
 
 # Plot 1
 
-```{r histogram1, echo = FALSE}
+```{r histogram1, echo = FALSE, fig.width = 2.4}
 # In this chunk I'm doing a bunch of analysis that I don't want to present 
 # in my slides. But I need the resulting data frame for a plot I want to present.
 asteroid %>%
@@ -128,7 +128,7 @@ asteroid %>%
 ---
 # Plot 2
 
-```{r recode-species, echo = FALSE}
+```{r recode-species, echo = FALSE, fig.width = 2.4}
 # In this chunk I'm doing a bunch of analysis that I don't want to present 
 # in my slides. But I need the resulting data frame for a plot I want to present.
 #asteroid_orbital_period <- 
