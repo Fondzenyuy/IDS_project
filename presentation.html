@@ -44,6 +44,7 @@ class: inverse, center, middle
 Asteroids, sometimes called minor planets, are rocky, airless remnants left over from the early formation of our solar system about 4.6 billion years ago.
 
 &lt;img src="one_asteroid.png" width="55%" /&gt;
+
 ---
 class: inverse, center, middle
 # Source
@@ -51,6 +52,7 @@ class: inverse, center, middle
 - In the database we can select data that we think are relevant to our report and also compare different asteroids to the same kind of data variables. This will make the differences more visible.
 
 &lt;img src="datanasa.jpg" width="55%" /&gt;
+
 ---
 
 
@@ -74,6 +76,8 @@ After filtering the relevant properties of the asteroid from the NASA database, 
 
 --
 ---
+# Code for method 1
+
 - The code for histogram 1 is like this:
 
  `asteroid %&gt;%`
@@ -130,7 +134,8 @@ After filtering the relevant properties of the asteroid from the NASA database, 
 
 ---
 
-- Methods 2: linear model
+# Methods 2: linear model
+
 
 Creating a linear model between `a` and `per_y`
 
@@ -147,7 +152,32 @@ If there is a linear model between the variable `a` and the variable `per_y` the
   `fit(a~per_y, data = asteroid) %&gt;%`
   `tidy()`
 --
+---
+# Code for method 2
 
+
+
+```
+## 
+## Call:
+## lm(formula = a ~ per_y, data = asteroid)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.61216 -0.00423  0.00258  0.00928  0.01328 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 8.970e-01  8.188e-05   10955   &lt;2e-16 ***
+## per_y       4.040e-01  1.816e-05   22249   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.01557 on 1038574 degrees of freedom
+##   (因为不存在，3个观察量被删除了)
+## Multiple R-squared:  0.9979,	Adjusted R-squared:  0.9979 
+## F-statistic: 4.95e+08 on 1 and 1038574 DF,  p-value: &lt; 2.2e-16
+```
 
 
 ---

@@ -51,6 +51,7 @@ Asteroids, sometimes called minor planets, are rocky, airless remnants left over
 ```{r asteroid , echo = FALSE, out.width = "55%"}
 include_graphics("one_asteroid.png")
 ```
+
 ---
 class: inverse, center, middle
 # Source
@@ -60,6 +61,7 @@ class: inverse, center, middle
 ```{r datanasa , echo = FALSE, out.width = "55%"}
 include_graphics("datanasa.jpg")
 ```
+
 ---
 
 
@@ -85,6 +87,8 @@ include_graphics("datatable.jpg")
 
 --
 ---
+# Code for method 1
+
 - The code for histogram 1 is like this:
 
  `asteroid %>%`
@@ -140,7 +144,8 @@ asteroid %>%
 
 ---
 
-- Methods 2: linear model
+# Methods 2: linear model
+
 
 Creating a linear model between `a` and `per_y`
 
@@ -157,7 +162,20 @@ If there is a linear model between the variable `a` and the variable `per_y` the
   `fit(a~per_y, data = asteroid) %>%`
   `tidy()`
 --
+---
+# Code for method 2
 
+
+```{r modelling, echo = FALSE}
+model1 <- lm(a~per_y, data = asteroid)
+summary(model1)
+
+a_pery_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(a~per_y, data = asteroid) %>%
+  tidy()
+
+```
 
 
 ---
