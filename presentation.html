@@ -69,6 +69,7 @@ After filtering the relevant properties of the asteroid from the NASA database, 
 - Aim：To discuss is there any difference for us to rank asteroids from closest to furthest by using two properties(semi-major axis &amp; orbital period).
 
 - Premise：Both of these two properties are positively associated to the distance of that asteroid from Earth.
+Also, our solar system is centred at the sun. Hence, 0AU corresponds to the position of the sun.
 
 
 - Method 1: Using ggplot to create two histograms with x-axis is `a` (semi-major axis) and x-axis is `per_y` (orbital period) correspondingly.
@@ -174,7 +175,7 @@ If there is a linear model between the variable `a` and the variable `per_y` the
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 0.01557 on 1038574 degrees of freedom
-##   (因为不存在，3个观察量被删除了)
+##   (3 observations deleted due to missingness)
 ## Multiple R-squared:  0.9979,	Adjusted R-squared:  0.9979 
 ## F-statistic: 4.95e+08 on 1 and 1038574 DF,  p-value: &lt; 2.2e-16
 ```
@@ -184,11 +185,9 @@ If there is a linear model between the variable `a` and the variable `per_y` the
 
 #Conclusion
 
-- At the end of this project, we would conclude on how many property-based rankings 
-agree when analysing asteroid data.
-- Furthermore, astronomers use the semi-major axis variable (asteroid-sun distance),a, as the
-most reliable property when computing distances between solar system bodies. 
-- Hence, using the asteroid dataset, we can construct a 3D distribution map..
+- Classifying the closeness of asteroids to us using the orbital period method is equivalent to uisng the semi-mjor axis method. This has been shown by the direct relationship between these two parameters.
+
+
 
 &lt;img src="mindmap.jpg" width="55%" /&gt;
 
