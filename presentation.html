@@ -55,8 +55,6 @@ class: inverse, center, middle
 
 ---
 
-
-
 # Data
 After filtering the relevant properties of the asteroid from the NASA database, we obtained the table below.
 
@@ -68,21 +66,34 @@ After filtering the relevant properties of the asteroid from the NASA database, 
 &lt;img src="presentation_files/figure-html/allmap -1.png" width="80%" /&gt;
 
 
+---  
 
----                                                                                                                          
-# Method
+# Method 1 ： Histogram
 
-- Aim：To discuss is there any difference for us to rank asteroids from closest to furthest by using two properties(semi-major axis &amp; orbital period).
+## Aim
+To discuss is there any difference for us to rank asteroids from closest to furthest by using two properties(semi-major axis &amp; orbital period).
 
-- Premise：Both of these two properties are positively associated to the distance of that asteroid from Earth.
-Also, our solar system is centred at the sun. Hence, 0AU corresponds to the position of the sun.
+## Premise
+-Both of these two properties are positively associated to the distance of that asteroid from Earth.
+-Also, our solar system is centred at the sun. Hence, 0AU corresponds to the position of the sun.
 
+##Method 1
+Using ggplot to create two histograms with x-axis is `a` (semi-major axis) and x-axis is `per_y` (orbital period) correspondingly.
 
-- Method 1: Using ggplot to create two histograms with x-axis is `a` (semi-major axis) and x-axis is `per_y` (orbital period) correspondingly.
-
-
---
 ---
+# Method 1 ： Histogram
+
+- Aim
+To discuss is there any difference for us to rank asteroids from closest to furthest by using two properties(semi-major axis &amp; orbital period).
+
+- Premise:
+-Both of these two properties are positively associated to the distance of that asteroid from Earth.
+-Also, our solar system is centred at the sun. Hence, 0AU corresponds to the position of the sun.
+
+- Method 1:
+Using ggplot to create two histograms with x-axis is `a` (semi-major axis) and x-axis is `per_y` (orbital period) correspondingly.
+---
+
 # Code for method 1
 
 - The code for histogram 1 is like this:
@@ -107,9 +118,6 @@ Also, our solar system is centred at the sun. Hence, 0AU corresponds to the posi
   
 ---
 
-
-
-
 # Plot 1
 
 
@@ -122,8 +130,6 @@ Also, our solar system is centred at the sun. Hence, 0AU corresponds to the posi
 ```
 
 &lt;img src="presentation_files/figure-html/histogram1-1.png" width="80%" /&gt;
-
-
 
 ---
 # Plot 2
