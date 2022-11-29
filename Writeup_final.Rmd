@@ -28,13 +28,19 @@ We do this because if the semi-long axis and the orbital period have the same ef
 Here is the code for these histograms:
 
 `asteroid %>%`
+
   `ggplot(aes(x = a)) +`
   `geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +`
+  
   `labs(x = "semi-major axis (a) in AU")`
   
+  
   `asteroid %>%`
+  
   `ggplot(aes(x = asteroid$per_y)) +`
+  
   `geom_histogram(aes(y = ..count..), binwidth = 0.005) + xlim(c(0,6)) +`
+  
   `labs(x = "orbital period (per_y)")`
 
 In method two, we will explore whether there is a linear relationship between the variable a and the variable `per_y`. So, we will create a linear model between `a` and `per_y` (set_engine("lm")), and in this model, `a` is the response variable, `per_y` is the explanatory variable. Then we apply the `tidy` function for this model, in which we find the R-squared value. 
@@ -46,13 +52,17 @@ The reason we create a linear model is that if there is a linear relationship be
 Here is the code for the linear model:
 
 `model1 <- lm(a~per_y, data = asteroid)`
+
 `summary(model1)`
 
  
 
 `a_pery_fit <- linear_reg() %>%`
+
   `set_engine("lm") %>%`
+  
   `fit(a~per_y, data = asteroid) %>%`
+  
   `tidy()`
 
 
