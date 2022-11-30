@@ -366,47 +366,50 @@ furthest using orbital parameters</h1>
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>In this time data science project, the issue we are discussing is the
-distance between asteroids and the Earth. We want to do the calculation
-in two different ways. The first main variable is use the Semi major
-axis, and for the second main variable is the orbital period. These are
-the two main variables we choose from our dataset. One of our team
-members studies physics, and he suggested the source website which was
-used to extract the required data for our project. The website is
-obtained from the small-body data archive of the National Aeronautics
-and Space Association (NASA).</p>
-<p>Just like the pictures shown in the presentation in the website, our
-data extraction from the NASA archive has key steps. We need to choose
-different categories in these four parts which can make us get the more
-accurate data as we want. For the first part which is to limit by object
-kind, we need to choose the asteroids (our object of interest for the
-project). After that we need to choose the asteroid orbit classes and
-choose the asteroid we want to get.</p>
+<p>In this data science project (which can be found at: <a href="https://github.com/Fondzenyuy/IDS_project.git" class="uri">https://github.com/Fondzenyuy/IDS_project.git</a>), the
+issue we are discussing is the classification of asteroids based on
+their closeness to the Earth. We want to do the calculation in two
+different ways using two distance dependent orbital variables . The
+first main variable is use the Semi major axis, and for the second is
+the orbital period.</p>
+<p>One of our team members studies physics, and he suggested the source
+website which was used to extract the required data for our project. The
+website is obtained from the small-body data archive of the National
+Aeronautics and Space Association (NASA).</p>
+<p>Just like the pictures of the data table shown in our presentation
+slides, our data extraction from the NASA archive has key steps. We need
+to choose different categories in these four parts which can make us get
+the more relevant data as we want. For the first part which is to limit
+by object kind, we need to choose the asteroids (our object of interest
+for the project). After that we need to choose the asteroid orbit
+classes and choose the asteroid range we want to get (asteroids within
+the solar system).</p>
 <p>For the fourth part which is most important ,we need to choose the
-variables we want to get. In this step, we choosed thirteen different
-variables. They are neo,diameter e ,a ,q, I ,om ,w, pery ,moid,sigamw,
-dates of first and last observations. These different variables have
-different meanings. For the <code>neo</code>, it stands for near earth
-object, a collective term for asteroids whose orbits are very close
-earth’s. The distance difference between orbits of near earth objects
-and the earth are typically smaller than 1.3 astronomical units. In
-addition, if an neo has a similar size with the earth, it becomes a
-potentially hazardous object (pho as shown on the data archive). The
-variable <code>e</code> is the eccentricity of the object.This is a
-constant that describes how much an asteroid’s orbit deviate from the
-roughly circular orbit of the earth around the sun. The parameter
-<code>a</code> is the semi major axis, the length of an imaginary line
-between the sun and the asteroid as it covers an elliptical path around
-the sun (according to Kepler’s first law of planetary motion). The q is
-perihelion distance, that is the closest possible distance between earth
-and asteroid. I is the inclination. om is the longitude of the ascending
-node, the Angular pitch between the asteroid at the Ascending node and
-the asteroid at the point when the ecliptic plane and equatorial plane
-meet. W is the argument of perihelion which is the argument in the orbit
-from the ascending node to perihelion. Pery is the time period per years
-we think year is a suitable time unit. Moid is the smallest distance
-between two orbits it is different with q which is the smallest distance
-between two objects.</p>
+variables we want to get. In this step, we chosed thirteen different
+variables ; neo,diameter e ,a ,q, I ,om ,w, pery ,moid, sigamw, dates of
+first and last observations. These different variables have different
+meanings. For the <code>neo</code>, it stands for near earth object, a
+collective term for asteroids whose orbits are very close to earth’s.
+The distance difference between orbits of near earth objects and the
+earth are typically smaller than 1.3 astronomical units. In addition, if
+an neo has a similar size with the earth, it becomes a potentially
+hazardous object (pho as shown on the data archive). The variable
+<code>e</code> is the eccentricity of the object.This is a constant that
+describes how much an asteroid’s orbit deviate from the roughly circular
+orbit of the earth around the sun. The parameter <code>a</code> is the
+semi major axis, the length of an imaginary line between the sun and the
+asteroid as it covers an elliptical path around the sun (according to
+Kepler’s first law of planetary motion). The q is perihelion distance,
+that is the closest possible distance between earth and asteroid.
+<code>i</code> is the inclination, <code>om</code> is the longitude of
+the ascending node, the angular pitch between the asteroid at the
+Ascending node and the asteroid at the point when the ecliptic plane and
+equatorial plane meet. <code>w</code> is the argument of perihelion
+which is the angle of the orbit from the ascending node to perihelion.
+<code>per_y</code> is the time period per years which is a suitable time
+unit for measuring periods of astronomical bodies. <code>Moid</code> is
+the smallest distance between two orbits while q which is the smallest
+distance between two objects.</p>
 </div>
 <div id="method" class="section level2">
 <h2>Method</h2>
@@ -466,7 +469,9 @@ distance-dependent. As seen on the plots, both classifications show an
 identical pattern across the entire asteroid data set. This can be
 explained mathematically by the equation of Kepler’s third law of
 planetary motion :</p>
-<p>$ T^{2} = a^{3}$</p>
+<p><span class="math display">\[\begin{equation}
+T^{2} = a^{3}
+\end{equation}\]</span></p>
 <p>whereby T denotes the orbital period (`<code>per_y</code>) in years
 and a denotes the distance between the earth and any given object in the
 solar system.</p>
