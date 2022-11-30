@@ -11,7 +11,7 @@
 
 <meta name="author" content="Sitong Zhang, Tonylouis Fondzenyuy, Zhekai Chen" />
 
-<meta name="date" content="2022-11-28" />
+<meta name="date" content="2022-11-30" />
 
 <title>Classifying Asteroids from closest to furthest using orbital parameters</title>
 
@@ -359,7 +359,7 @@ display: none;
 <h1 class="title toc-ignore">Classifying Asteroids from closest to
 furthest using orbital parameters</h1>
 <h4 class="author">Sitong Zhang, Tonylouis Fondzenyuy, Zhekai Chen</h4>
-<h4 class="date">2022-11-28</h4>
+<h4 class="date">2022-11-30</h4>
 
 </div>
 
@@ -370,40 +370,43 @@ furthest using orbital parameters</h1>
 distance between asteroids and the Earth. We want to do the calculation
 in two different ways. The first main variable is use the Semi major
 axis, and for the second main variable is the orbital period. These are
-the two main variables we choose. So we do some research of the data of
-it. One of our team members study the physics, and he find there is a
-website which might give us the data we want to have. The website is
-created by the NASA company which a really famous company at the
-Aviation sector. Just like the pictures shown in the presentation, in
-the website it has fore parts. We need to choose different categories in
-these four parts which can make us get the more accurate data as we
-want. For the first part which is limit by object kind, we need to
-choose the comet which is according to our questions. After that we need
-to choose the asteroid orbit classes. And choose the asteroid we want to
-get. For the fourth part which is most important ,we need to help the
-different asteroid to choose the variables we want to get. in the
-beginning, we choose thirteen different variables. They are neo,diameter
-e ,a ,q, I ,om ,w, pery ,moid,sigamw, first obs and last obs. These
-different variables have different meaning . for the neo it is near
-earth object flag. That is the object which the orbit of it is really
-near to the earth. And for the distance between object orbit and earth
-orbit need smaller than 1.3 astronomical units. And for the neo if it
-has similar size with earth which will make dangerous with earth is pho.
-E is the eccentricity . which is the orbital eccentricity of the
-subject. If we take the orbit of the Earth as our example. The data
-shows on e mean the Deviation of the asteroid’s orbit from that of the
-Earth. For the a is the semi major axis . As we know the orbit is
-usually a oval . There is a line which cross the center and touch two
-sides of the oval. The q is perihelion distance, that is the closest
-possible distance between earth and asteroid. I is the inclination. om
-is the longitude of the ascending node, the Angular pitch between the
-asteroid at the Ascending node and the asteroid at the point when the
-ecliptic plane and equatorial plane meet. W is the argument of
-perihelion which is the argument in the orbit from the ascending node to
-perihelion. Pery is the time period per years we think year is a
-suitable time unit. Moid is the smallest distance between two orbits it
-is different with q which is the smallest distance between two
-objects.</p>
+the two main variables we choose from our dataset. One of our team
+members studies physics, and he suggested the source website which was
+used to extract the required data for our project. The website is
+obtained from the small-body data archive of the National Aeronautics
+and Space Association (NASA).</p>
+<p>Just like the pictures shown in the presentation in the website, our
+data extraction from the NASA archive has key steps. We need to choose
+different categories in these four parts which can make us get the more
+accurate data as we want. For the first part which is to limit by object
+kind, we need to choose the asteroids (our object of interest for the
+project). After that we need to choose the asteroid orbit classes and
+choose the asteroid we want to get.</p>
+<p>For the fourth part which is most important ,we need to choose the
+variables we want to get. In this step, we choosed thirteen different
+variables. They are neo,diameter e ,a ,q, I ,om ,w, pery ,moid,sigamw,
+dates of first and last observations. These different variables have
+different meanings. For the <code>neo</code>, it stands for near earth
+object, a collective term for asteroids whose orbits are very close
+earth’s. The distance difference between orbits of near earth objects
+and the earth are typically smaller than 1.3 astronomical units. In
+addition, if an neo has a similar size with the earth, it becomes a
+potentially hazardous object (pho as shown on the data archive). The
+variable <code>e</code> is the eccentricity of the object.This is a
+constant that describes how much an asteroid’s orbit deviate from the
+roughly circular orbit of the earth around the sun. The parameter
+<code>a</code> is the semi major axis, the length of an imaginary line
+between the sun and the asteroid as it covers an elliptical path around
+the sun (according to Kepler’s first law of planetary motion). The q is
+perihelion distance, that is the closest possible distance between earth
+and asteroid. I is the inclination. om is the longitude of the ascending
+node, the Angular pitch between the asteroid at the Ascending node and
+the asteroid at the point when the ecliptic plane and equatorial plane
+meet. W is the argument of perihelion which is the argument in the orbit
+from the ascending node to perihelion. Pery is the time period per years
+we think year is a suitable time unit. Moid is the smallest distance
+between two orbits it is different with q which is the smallest distance
+between two objects.</p>
 </div>
 <div id="method" class="section level2">
 <h2>Method</h2>
@@ -440,13 +443,10 @@ create a linear model between <code>a</code> and <code>per_y</code>
 variable, <code>per_y</code> is the explanatory variable. Then we apply
 the <code>tidy</code> function for this model, in which we find the
 R-squared value.</p>
-<p>The reason we create a linear model is that if there is a linear
-relationship between the variable <code>a</code> and the variable
-<code>per_y</code>, then we can know that there is a linear relationship
-between <code>a</code> and <code>per_y</code>, so if <code>a</code> has
-any effect on the other variables then <code>per_y</code> has the same
-effect on them.</p>
-<p>Here is the code for the linear model:</p>
+<p>Due to the similar order of magnitude of the values of <code>a</code>
+and <code>per_y</code>, we can investigate the relationship between
+these variables using the linear model method.</p>
+<p>Here is the code used for the linear model:</p>
 <p><code>model1 &lt;- lm(a~per_y, data = asteroid)</code></p>
 <p><code>summary(model1)</code></p>
 <p><code>a_pery_fit &lt;- linear_reg() %&gt;%</code></p>
@@ -464,10 +464,15 @@ information on the closeness (classification by distance) of these
 asteroids to us since the orbital parameters used are
 distance-dependent. As seen on the plots, both classifications show an
 identical pattern across the entire asteroid data set. This can be
-explained mathematically by the equation below whereby:</p>
-<p>The equation shows a direct linear relationship between the
-semi-major axis and the orbital period thereby explaining the identical
-pattern in the histograms above.</p>
+explained mathematically by the equation of Kepler’s third law of
+planetary motion :</p>
+<p>$ T^{2} = a^{3}$</p>
+<p>whereby T denotes the orbital period (`<code>per_y</code>) in years
+and a denotes the distance between the earth and any given object in the
+solar system.</p>
+<p>Kepler’s shows a direct linear relationship between the semi-major
+axis and the orbital period which vindicates the identical pattern in
+the histograms obtained by ranking asteroids by selected variables.</p>
 <p>The histogram consists of spacings between the histogram bins of the
 asteroid positions. These spacings physically represent the Kirkwood
 gaps in our solar system. As the name implies, Kirkwood gaps refer to
@@ -494,15 +499,13 @@ The values of these parameters are numeric thereby permitting the use of
 a linear regression model. As described in the methods section, the
 <code>tidymodels</code> package was used to compute the regression
 model.</p>
-<p>The model output was then visualized as shown below: (model
-image)</p>
-<p>The goodness of fit of our model (denoted as R-squared in the method)
-gave us a value of 0.9979. Since the R-squared value is very close to 1,
-it confirms the direct correlation between orbital semi-major axis and
-period as equivalent parameters for classifying asteroids.
-Interestingly, when two other distant-dependent orbital parameters,
-orbital inclination and ellipse– , are added as predictors to the model,
-the value of R-squared moves slightly closer to 1. Hence, additional
+<p>The goodness of fit of our model (R-squared) gave us a value of
+0.9979. Since the R-squared value is very close to 1, it confirms the
+direct correlation between orbital semi-major axis and period as
+equivalent parameters for classifying asteroids. Interestingly, when two
+other distant-dependent orbital parameters, orbital inclination (i) and
+eccentricity (e) are used as additional predictors to the model, the
+value of R-squared moves slightly closer to 1. Hence, additional
 parameters can play a role in helping us get a slightly accurate
 classification of the asteroids. However, these additional parameters by
 themselves cannot be primarily used as the only predictors since they
@@ -511,7 +514,9 @@ give very small contributions to the overall R-squared value.</p>
 <div id="conclusion" class="section level3">
 <h3>Conclusion</h3>
 <p>To conclude, semi-major axis and orbital periods give the same
-classification of asteroids in our data set.</p>
+classification of asteroids in our data set. Lastly, asteroids being
+solar system bodies (and substantially smaller in size than planets)
+obey Kepler’s laws of motion.</p>
 <hr />
 </div>
 </div>
